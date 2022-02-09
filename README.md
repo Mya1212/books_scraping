@@ -1,6 +1,6 @@
-# projet_2
+# Projet_2
 ## Description du projet :
-Le projet consiste a développer un script qui permet de suivre les prix des livres sur le site http://books.toscrape.com/.
+Le projet consiste à développer un script qui permet de suivre les prix des livres sur le site http://books.toscrape.com/.
 
 En premier temps,le script extrait les données suivantes :
 - URL du livre
@@ -14,41 +14,39 @@ En premier temps,le script extrait les données suivantes :
  - Rating
  - URL de l'image
  - Chemin local de l'image téléchargée
-Ces données sont stockées dans des fichiers CSV qui sont classés par catégorie.
+
+Ces données sont stockées dans des fichiers CSV, un fichier par catégorie.
 
 En deuxième temps, les images des livres sont téléchargées dans les dossier de la catégorie correspondante.
 
-### 1-Création et activation de l’environnement virtuel:
-- Ouvrir un terminal de commande (ex:powershell).
-- A l’aide de la commande pwd trouver votre emplacement sur l’ordinateur.
-- A l’aide de la commande cd placez vous dans le répertoire qui contient le projet.
-- Taper la commande python -m venv nom (nom= choisissez un nom a donner à votre environnement). 
-- Taper la commande .python\nom\Scripts\Activate.ps1 pour activer votre environnement virtuel.
+### Execution du code :
+- Commencez tout d'abord par installer Python
 
-### 2-Exécution du code de l’application :
-Commencez tout d'abord par installer Python.
-Lancez ensuite la console, placez vous dans le dossier de votre choix puis clonez ce repository:
-git clone https://github.com/Mya1212/P2-NG.git
+- Lancez la console, placez vous dans le dossier de votre choix grace à la commande cd
 
-- Placez vous dans le dossier OC_P2_BooksToScrape, puis créez un nouvel environnement virtuel:
+- Clonez ce repository:
 
-python -m venv env
+    git clone https://github.com/Mya1212/books_scraping.git
 
-- Ensuite, activez-le.
-Windows:
+- Placez vous dans le dossier books_scraping, puis créez un nouvel environnement virtuel:
+
+    python -m venv env
+
+- Activez votre environnement virtuel:
+
+    Windows:
 env\scripts\activate.bat
 
-Linux:
-
+    Linux:
 source env/bin/activate
 
 - Il ne reste plus qu'à installer les packages requis:
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 - Vous pouvez enfin lancer le script:
 
-python main.py
+    python main.py
 
     
 
