@@ -1,11 +1,8 @@
-#from urllib import response
-from webbrowser import get
 import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
 from slugify import slugify
 import csv
-import os.path
 
 BASE_URL= "https://books.toscrape.com/"
 DATA_DIR= "data/csv/"
@@ -93,13 +90,12 @@ def convert_rating(rating):
     rating_number ={'One':1,'Two':2,'Three':3,'Four':4,'Five':5,}
     return rating_number.get(rating)
 
-
 def save_data_to_csv(category, books_data):
     # écriture fichier csv livre 
     # en_tete = ['product_page_url', 'upc', 'title', 'price_including_tax', 'price_excluding_tax', 'number_available', 'product_description', 'category', 'review_rating', 'image_url'] 
     header = books_data[0].keys()
     category = books_data[0].get("category")
-    with open(DATA_DIR+category+".csv",'w',encoding='utf-8-sig') as file:
+    with open(DATA_DIR+category+".csv",'w',encoding='utf-8-sig',newline="") as file:
         writer = csv.DictWriter(file, fieldnames=header)
         writer.writeheader()
         writer.writerows(books_data)
@@ -137,7 +133,7 @@ def main():
         print ("Ecriture du fichier CSV en cours...")    
         save_data_to_csv(category,books_data)
 
-        print ("Récupération de l'image en cours...")
+        print ("Récupération des images en cours...")
         save_image(books_data)
 
 if __name__ == '__main__':
