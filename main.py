@@ -21,7 +21,6 @@ def get_category_url():
     soup = recup_data(BASE_URL)
     div=soup.find("div","side_categories")
     result=[]
-    name = soup.find('h1').text
     if soup is None:
         return
     for link in div.find_all("a"):
@@ -83,16 +82,17 @@ def get_book_data(url):
     'category':category,
     'review_rating':review_rating,
     'image_url':image_url,
+    "img_file": f"{IMG_DIR}{slugify(category)}/{slugify(title)}.jpg",
 }
     return info
 
 def convert_rating(rating):
+    """transforme le rating en nombre"""
     rating_number ={'One':1,'Two':2,'Three':3,'Four':4,'Five':5,}
     return rating_number.get(rating)
 
 def save_data_to_csv(category, books_data):
-    # écriture fichier csv livre 
-    # en_tete = ['product_page_url', 'upc', 'title', 'price_including_tax', 'price_excluding_tax', 'number_available', 'product_description', 'category', 'review_rating', 'image_url'] 
+    """crée et écrit un fichier csv""" 
     header = books_data[0].keys()
     category = books_data[0].get("category")
     with open(DATA_DIR+category+".csv",'w',encoding='utf-8-sig',newline="") as file:
@@ -101,6 +101,7 @@ def save_data_to_csv(category, books_data):
         writer.writerows(books_data)
 
 def save_image(books_data):
+    """télécharge les images""" 
     category = slugify(books_data[0].get("category"))
     Path(f"{IMG_DIR+category}").mkdir(parents=True,exist_ok=True)
     for book in books_data:
@@ -135,6 +136,8 @@ def main():
 
         print ("Récupération des images en cours...")
         save_image(books_data)
+
+    print("fin des téléchargements")
 
 if __name__ == '__main__':
     main()
